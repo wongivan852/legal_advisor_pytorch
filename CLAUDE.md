@@ -181,3 +181,72 @@ pytest tests/
 | `/api/query` | POST | Query the RAG system |
 | `/api/index/status` | GET | Index statistics |
 | `/api/index/rebuild` | POST | Rebuild index |
+
+## Incident Log & Fixes (2026-01-29)
+
+### Issue 1: XML Parsing Error - `prefix 'xml' not found in prefix map`
+**Symptom:** Most HKEL XML files failed to parse with namespace errors.
+
+**Root Cause:** The HKEL XML files use `xml:lang` attributes (e.g., `xml:lang="en"`, `xml:lang="zh-Hant-HK"`), but the parser's namespace dictionary didn't include the reserved `xml` namespace.
+
+**Fix:** Added `xml` and `xsi` namespaces to `src/preprocessing/hkel_parser.py`:
+```python
+NAMESPACES = {
+    'hklm': 'http://www.xml.gov.hk/schemas/hklm/1.0',
+    'dc': 'http://purl.org/dc/elements/1.1/',
+    'dcterms': 'http://purl.org/dc/terms/',
+    'xhtml': 'http://www.w3.org/1999/xhtml',
+    'xml': 'http://www.w3.org/XML/1998/namespace',  # Added
+    'xsi': 'http://www.w3.org/2001/XMLSchema-instance'  # Added
+}
+```
+
+### Issue 2: Empty Tensor Normalization Error
+**Symptom:** `IndexError: Dimension out of range (expected to be in range of [-1, 0], but got 1)` when indexing 0 chunks.
+
+**Root Cause:** `_generate_embeddings()` in `hybrid_retriever.py` called `F.normalize(embeddings, p=2, dim=1)` on an empty tensor.
+
+**Fix:** Added empty input check in `src/retrieval/hybrid_retriever.py`:
+```python
+def _generate_embeddings(self, texts: List[str]) -> torch.Tensor:
+    if not texts:
+        return torch.empty(0, self.model.get_sentence_embedding_dimension())
+    # ... rest of function
+```
+
+### Issue 3: API Re-indexing on Every Query
+**Symptom:** First query took forever and eventually timed out; server was re-generating embeddings for all 8,814 chunks.
+
+**Root Cause:** `_load_retriever()` in `src/api/main.py` always rebuilt the index from chunks instead of loading the pre-built embeddings from `data/index/vector_index/`.
+
+**Fix:** Updated `_load_retriever()` to load pre-built index first:
+```python
+def _load_retriever(force_rebuild: bool = False):
+    vector_index_path = INDEX_DIR / "vector_index"
+
+    # Try to load pre-built index first
+    if not force_rebuild and vector_index_path.exists():
+        retriever = HybridRetriever(model_name="BAAI/bge-base-en-v1.5")
+        retriever.load_index(vector_index_path)
+        return retriever, knowledge_graph
+    # ... fallback to rebuild
+```
+
+### Issue 4: Empty Data Directory
+**Symptom:** `property_owner_ordinances/` contained only MANIFEST.md, no actual XML files.
+
+**Root Cause:** The narrowed dataset needed to be populated from `hkel_legal_import/`.
+
+**Fix:** Copied 47 relevant ordinances from `hkel_legal_import/` to `property_owner_ordinances/`:
+```bash
+# Example: copy Building Management Ordinance
+cp -r data/hkel_legal_import/cap_344_en_c data/property_owner_ordinances/
+```
+
+### Current Status (Post-Fix)
+- **49 ordinances** successfully parsed
+- **4,470 chunks** indexed (property_owner_ordinances dataset)
+- **8,814 chunks** total (including all uploaded documents)
+- **Knowledge graph:** 4,442 nodes, 3,254 edges
+- **Embedding model:** BAAI/bge-base-en-v1.5
+- **Server:** Running on http://localhost:8000

@@ -18,7 +18,9 @@ NAMESPACES = {
     'hklm': 'http://www.xml.gov.hk/schemas/hklm/1.0',
     'dc': 'http://purl.org/dc/elements/1.1/',
     'dcterms': 'http://purl.org/dc/terms/',
-    'xhtml': 'http://www.w3.org/1999/xhtml'
+    'xhtml': 'http://www.w3.org/1999/xhtml',
+    'xml': 'http://www.w3.org/XML/1998/namespace',
+    'xsi': 'http://www.w3.org/2001/XMLSchema-instance'
 }
 
 
@@ -93,11 +95,18 @@ class HKELParser:
 
     def __init__(self):
         self.ns = NAMESPACES
+        # Register namespaces to preserve prefixes
+        for prefix, uri in NAMESPACES.items():
+            ET.register_namespace(prefix, uri)
 
     def parse_file(self, file_path: Path) -> Ordinance:
         """Parse a single HKEL XML file"""
-        tree = ET.parse(file_path)
-        root = tree.getroot()
+        # Read and preprocess XML to handle namespace issues
+        with open(file_path, 'r', encoding='utf-8') as f:
+            xml_content = f.read()
+
+        # Parse from string
+        root = ET.fromstring(xml_content)
 
         # Determine root element type (ordinance or subLeg)
         root_tag = root.tag.replace(f'{{{self.ns["hklm"]}}}', '')

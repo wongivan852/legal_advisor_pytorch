@@ -158,6 +158,9 @@ class HybridRetriever:
 
     def _generate_embeddings(self, texts: List[str]) -> torch.Tensor:
         """Generate embeddings for texts"""
+        if not texts:
+            return torch.empty(0, self.model.get_sentence_embedding_dimension())
+
         embeddings = self.model.encode(
             texts,
             convert_to_tensor=True,

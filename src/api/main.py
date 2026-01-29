@@ -256,16 +256,32 @@ def _load_retriever(force_rebuild: bool = False):
     """Load or create the retriever and knowledge graph"""
     from retrieval import HybridRetriever, LegalKnowledgeGraph
 
+    vector_index_path = INDEX_DIR / "vector_index"
+    kg_path = INDEX_DIR / "knowledge_graph"
+
+    # Try to load pre-built index first
+    if not force_rebuild and vector_index_path.exists() and (vector_index_path / "embeddings.pt").exists():
+        retriever = HybridRetriever(model_name="BAAI/bge-base-en-v1.5")
+        retriever.load_index(vector_index_path)
+
+        knowledge_graph = LegalKnowledgeGraph()
+        if kg_path.exists():
+            knowledge_graph.load(kg_path)
+
+        return retriever, knowledge_graph
+
+    # Fall back to rebuilding from chunks
     chunks = index_updater.get_all_chunks()
 
     if not chunks:
         return None, None
 
-    retriever = HybridRetriever()
+    retriever = HybridRetriever(model_name="BAAI/bge-base-en-v1.5")
     knowledge_graph = LegalKnowledgeGraph()
 
-    retriever.index_chunks(chunks)
+    retriever.index_chunks(chunks, save_path=vector_index_path)
     knowledge_graph.build_from_chunks(chunks)
+    knowledge_graph.save(kg_path)
 
     return retriever, knowledge_graph
 
