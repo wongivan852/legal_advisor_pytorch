@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?><lawDoc xmlns="http://www.xml.gov.hk/schemas/hklm/1.0" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:dc="http://purl.org/dc/elements/1.1/" xsi:schemaLocation="http://www.xml.gov.hk/schemas/hklm/1.0 https://www.elegislation.gov.hk/schemas/hklm.xsd" identifier="/hk/capA305B!en" xml:lang="en"><meta><docType>instrument</docType><docNumber>A305B</docNumber><docStatus>In effect</docStatus><docName>Cap. A305B</docName><dc:identifier>/hk/capA305B!en</dc:identifier><dc:date>2025-05-13</dc:date><dc:subject>legislation</dc:subject><dc:language>en</dc:language><dc:publisher>DoJ</dc:publisher><dc:rights>The Government of the Hong Kong Special Administrative Region</dc:rights></meta><main><docTitle startPeriod="2025-05-13" status="operational" reason="inEffect" id="ID_1747019830693_001" name="shortTitle" temporalId="shortTitle">
+            <content>Safeguarding National Security (Declaration of Prohibited Places)
+                Order</content>
+        </docTitle><enactingFormula>(Made by the Chief Executive under <ref>section 42</ref> of the
+            Safeguarding National Security Ordinance (<ref href="hk/2024/6">6 of 2024</ref>) after
+            consultation with the Executive
+            Council)<marker role="blank-line"></marker></enactingFormula><commencementNote>[13
+            May
+            2025]</commencementNote><enactingFormula>
+            
+            <marker role="blank-line"></marker>
+            <marker role="blank-line"></marker>
+            
+        </enactingFormula><editorialNote type="footnote" id="ID_1747023314118_001">
+            <content>Editorial Note: </content>
+            <content class="align_justified">This instrument was not given a chapter number under
+                the Legislation Publication Ordinance (<ref href="/hk/cap614">Cap. 614</ref>). An
+                unofficial reference number, however, is assigned to this instrument in Hong Kong
+                e-Legislation (<a xmlns="http://www.w3.org/1999/xhtml" href="https://www.elegislation.gov.hk"><span class="font_size_9">https://www.elegislation.gov.hk</span></a>) for identification purposes.
+                This also enables users to carry out a search by reference to the unofficial
+                reference number.</content>
+        </editorialNote><section startPeriod="2025-05-13T00:00:00" status="operational" reason="inEffect" id="ID_1747019830756_002" name="s1" temporalId="s1"><num value="1">1.</num><heading>Interpretation</heading><leadIn>In this Order—</leadIn><def name="OSNS"><term>OSNS</term> (<term xml:lang="zh-Hant-HK">公署</term>) means the Office for Safeguarding National Security of the Central People’s Government in the Hong Kong Special Administrative Region.</def></section><section startPeriod="2025-05-13T00:00:00" status="operational" reason="inEffect" id="ID_1747019830771_003" name="s2" temporalId="s2"><num value="2">2.</num><heading>Declaration of prohibited places</heading><content>A place specified in the <ref>Schedule </ref>is declared as a prohibited place for the purposes of paragraph (g) of the definition of <b><i>prohibited place</i></b> in <ref>section 41(1)</ref> of the Ordinance.</content></section><schedule startPeriod="2025-05-13" status="operational" reason="inEffect" id="ID_1747019830818_004" name="sch0" temporalId="sch0"><num value="0">Schedule</num><note role="crossReferences" type="inline">[<ref href="/hk/A305B/s2">s.
+            2</ref>]</note><heading>Prohibited Places<marker role="blank-line"></marker></heading><content>
+            
+            
+            <table xmlns="http://www.w3.org/1999/xhtml" width="448" class="left_indent_0 repeat_header">
+                <colgroup>
+                    <col width="13.5%"></col>
+                    <col width="26.5%"></col>
+                    <col width="9%"></col>
+                    <col width="7%"></col>
+                    <col width="44%"></col>
+                </colgroup>
+                <thead>
+                    <tr class="break_rows">
+                        <td class="align_left">
+                            <p class="align_center right_indent_0">Column 1</p>
+                            <p class="right_indent_0">Item</p>
+                        </td>
+                        <td class="align_left">
+                            <p class="align_center">Column 2</p>
+                            <p class="align_center below_space_between_line_4">Place</p>
+                        </td>
+                        <td class="align_left" colspan="3">
+                            <p class="align_center">Column 3</p>
+                            <p class="align_center below_space_between_line_4">Remarks</p>
+                        </td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="align_left">
+                            <p class="right_indent_0 above_space_between_line_12">1.</p>
+                        </td>
+                        <td class="align_left">
+                            <p class="above_space_between_line_12 left_indent_12">The place situated
+                                at 148 Tung Lo Wan Road, Hong Kong and occupied by the OSNS</p>
+                        </td>
+                        <td class="align_left" colspan="3">
+                            <p class="above_space_between_line_12 left_indent_12">Namely, the area
+                                enclosed by the following points—<br></br>KK1065466668:KK1067966670:
+                                KK1067966640:KK1065666632: KK1065466668</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="align_left">
+                            <p class="above_space_between_line_12 right_indent_0">2.</p>
+                        </td>
+                        <td class="align_left">
+                            <p class="above_space_between_line_12 left_indent_12">The place situated
+                                at 9 City Garden Road, Hong Kong and occupied by the OSNS</p>
+                        </td>
+                        <td class="align_left" colspan="3">
+                            <p class="above_space_between_line_12 left_indent_12">Namely, the area
+                                enclosed by the following points—<br></br>KK1088767612:KK1087567611:
+                                KK1085767627:KK1086167633: KK1086667639:KK1086767643:
+                                KK1086467646:KK1089467681: KK1092467655:KK1088767612</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="align_left">
+                            <p class="above_space_between_line_12 right_indent_0">3.</p>
+                        </td>
+                        <td class="align_left">
+                            <p class="above_space_between_line_12 left_indent_12">The place situated
+                                at 152 Connaught Road West, Hong Kong and occupied by the OSNS</p>
+                        </td>
+                        <td class="align_left" colspan="3">
+                            <p class="above_space_between_line_12 left_indent_12">Namely, the area
+                                enclosed by the following points—<br></br>KK0555067543:KK0556967542:
+                                KK0556767513:KK0556467510: KK0556367493:KK0554767494:
+                                KK0555067543</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="align_left">
+                            <p class="above_space_between_line_12 right_indent_0">4.</p>
+                        </td>
+                        <td class="align_left">
+                            <p class="left_indent_12 above_space_between_line_12">The place situated
+                                at 1 Cheong Tung Road, Kowloon and occupied by the OSNS</p>
+                        </td>
+                        <td class="align_left" colspan="3">
+                            <p class="left_indent_12 above_space_between_line_12">Namely, the area
+                                enclosed by the following points—<br></br>KK0973769275:KK0975469299:
+                                KK0980469264:KK0978769240: KK0973769275</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="align_left">
+                            <p class="above_space_between_line_12 right_indent_0">5.</p>
+                        </td>
+                        <td class="align_left">
+                            <p class="above_space_between_line_12 left_indent_12">The place situated
+                                at the junction of Hoi Fai Road and Sham Mong Road, Kowloon and
+                                occupied by the OSNS</p>
+                        </td>
+                        <td class="align_left" colspan="3">
+                            <p class="above_space_between_line_12 left_indent_12">Namely, the area
+                                enclosed by the following points—<br></br>KK0722571403:KK0726571451:
+                                KK0730871414:KK0732771382: KK0732871353:KK0731571325:
+                                KK0722571403</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="align_left">
+                            <p class="right_indent_0 above_space_between_line_12">6.</p>
+                        </td>
+                        <td class="align_left" rowspan="2">
+                            <p class="above_space_between_line_12 left_indent_12">The place situated
+                                at Hoi Fan Road, Kowloon and occupied by the OSNS</p>
+                        </td>
+                        <td class="align_left" colspan="3">
+                            <p class="left_indent_12 above_space_between_line_12">Namely—</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="align_left"></td>
+                        <td class="align_left"></td>
+                        <td>(a)</td>
+                        <td class="align_left">
+                            <p class="space_between_line_6">the area enclosed by the following
+                                points— <br></br>KK0699771406:KK0700071406: KK0702071378:KK0703471361:
+                                KK0705171333:KK0705771323: KK0705371321:KK0706271306:
+                                KK0701371279:KK0700571292: KK0695671382:KK0697671391:
+                                KK0699771406;</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="align_left"></td>
+                        <td class="align_left"></td>
+                        <td class="align_left"></td>
+                        <td>(b)</td>
+                        <td class="align_left">
+                            <p class="space_between_line_6">the area enclosed by the following
+                                points— <br></br>KK0691071358:KK0689971341: KK0689471321:KK0689271301:
+                                KK0689571281:KK0690371262: KK0691571241:KK0686271213:
+                                KK0684671241:KK0684571241: KK0683371264:KK0683271268:
+                                KK0691071358</p>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            
+        </content><notes class="left_indent_36"><statutoryNote>
+                
+                <marker role="blank-line"></marker>
+                
+                <heading>Note—</heading>
+                <section class="left_indent_36" id="ID_1747019831100_007" name="s0" temporalId="sch0_s0"><content>The grid system adopted by the coordinates referred to in column 3 of
+                        this <ref>Schedule </ref>is the Universal Transverse Mercator (UTM) Grid
+                        System, and the geodetic datum is WGS 84.</content></section>
+            </statutoryNote></notes></schedule></main></lawDoc>
