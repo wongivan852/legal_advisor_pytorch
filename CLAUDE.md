@@ -243,6 +243,16 @@ def _load_retriever(force_rebuild: bool = False):
 cp -r data/hkel_legal_import/cap_344_en_c data/property_owner_ordinances/
 ```
 
+### Issue 5: Web UI Missing Query Interface (2026-01-29)
+**Symptom:** Users could only upload documents via the web UI; querying required using curl or the API directly.
+
+**Fix:** Added a complete query interface to the web UI (`src/api/main.py`):
+- Search box with Enter key support
+- Filter by number of results (5/10/20)
+- Filter by ordinance (Cap. 344, 123, 572, etc.)
+- Example query buttons for quick testing
+- Results display with scores, hierarchy paths, and cross-references
+
 ### Current Status (Post-Fix)
 - **49 ordinances** successfully parsed
 - **4,470 chunks** indexed (property_owner_ordinances dataset)
@@ -250,3 +260,4 @@ cp -r data/hkel_legal_import/cap_344_en_c data/property_owner_ordinances/
 - **Knowledge graph:** 4,442 nodes, 3,254 edges
 - **Embedding model:** BAAI/bge-base-en-v1.5
 - **Server:** Running on http://localhost:8000
+- **Web UI:** Full query and upload interface

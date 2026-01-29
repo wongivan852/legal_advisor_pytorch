@@ -569,17 +569,186 @@ def get_upload_page_html() -> str:
             margin-left: 20px;
             color: #90a4ae;
         }
+        /* Query section styles */
+        .search-box {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .search-box input {
+            flex: 1;
+            padding: 15px 20px;
+            font-size: 1.1rem;
+        }
+        .search-box .btn {
+            padding: 15px 30px;
+            white-space: nowrap;
+        }
+        .search-options {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        .search-options .form-group {
+            margin-bottom: 0;
+            min-width: 150px;
+        }
+        .search-options label {
+            font-size: 0.85rem;
+        }
+        .search-options input, .search-options select {
+            padding: 8px 12px;
+            font-size: 0.9rem;
+        }
+        .query-results {
+            margin-top: 20px;
+        }
+        .query-result-item {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-left: 4px solid #4fc3f7;
+        }
+        .query-result-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 10px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .query-result-title {
+            color: #4fc3f7;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        .query-result-score {
+            background: rgba(79, 195, 247, 0.2);
+            color: #4fc3f7;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.85rem;
+        }
+        .query-result-path {
+            color: #90a4ae;
+            font-size: 0.85rem;
+            margin-bottom: 10px;
+        }
+        .query-result-text {
+            color: #e0e0e0;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+        .query-result-refs {
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .query-result-refs-title {
+            color: #90a4ae;
+            font-size: 0.8rem;
+            margin-bottom: 5px;
+        }
+        .query-result-refs a {
+            color: #81c784;
+            text-decoration: none;
+            font-size: 0.85rem;
+            margin-right: 10px;
+        }
+        .query-result-refs a:hover {
+            text-decoration: underline;
+        }
+        .no-results {
+            text-align: center;
+            padding: 40px;
+            color: #607d8b;
+        }
+        .results-summary {
+            color: #90a4ae;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+        }
+        .example-queries {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 15px;
+        }
+        .example-query {
+            background: rgba(79, 195, 247, 0.1);
+            border: 1px solid rgba(79, 195, 247, 0.2);
+            color: #4fc3f7;
+            padding: 6px 12px;
+            border-radius: 16px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .example-query:hover {
+            background: rgba(79, 195, 247, 0.2);
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
             <h1>📜 Legal RAG System</h1>
-            <p class="subtitle">Upload and manage Hong Kong property law ordinances</p>
+            <p class="subtitle">Search and manage Hong Kong property law ordinances</p>
         </header>
 
         <div class="card">
-            <h2>Upload Document</h2>
+            <h2>🔍 Search Legal Database</h2>
+            <div class="search-box">
+                <input type="text" id="search-query" placeholder="Ask a question about Hong Kong property law..."
+                       onkeypress="if(event.key==='Enter') submitQuery()">
+                <button class="btn" onclick="submitQuery()">Search</button>
+            </div>
+
+            <div class="search-options">
+                <div class="form-group">
+                    <label for="search-top-k">Results</label>
+                    <select id="search-top-k">
+                        <option value="5">5 results</option>
+                        <option value="10" selected>10 results</option>
+                        <option value="20">20 results</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="search-ordinance">Filter by Ordinance</label>
+                    <select id="search-ordinance">
+                        <option value="">All Ordinances</option>
+                        <option value="Cap. 344">Cap. 344 - Building Management</option>
+                        <option value="Cap. 123">Cap. 123 - Buildings Ordinance</option>
+                        <option value="Cap. 572">Cap. 572 - Fire Safety (Buildings)</option>
+                        <option value="Cap. 95">Cap. 95 - Fire Services</option>
+                        <option value="Cap. 131">Cap. 131 - Town Planning</option>
+                        <option value="Cap. 7">Cap. 7 - Landlord and Tenant</option>
+                        <option value="Cap. 618">Cap. 618 - Lifts and Escalators</option>
+                        <option value="Cap. 563">Cap. 563 - Urban Renewal Authority</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="example-queries">
+                <span style="color: #607d8b; font-size: 0.85rem;">Try:</span>
+                <span class="example-query" onclick="setQuery('What are the duties of the management committee?')">Management committee duties</span>
+                <span class="example-query" onclick="setQuery('How to form an incorporated owners corporation?')">Form IO corporation</span>
+                <span class="example-query" onclick="setQuery('Fire safety requirements for buildings')">Fire safety</span>
+                <span class="example-query" onclick="setQuery('AGM voting requirements')">AGM voting</span>
+            </div>
+
+            <div class="loading" id="query-loading">
+                <div class="spinner"></div>
+                <p>Searching legal database...</p>
+            </div>
+
+            <div class="query-results" id="query-results"></div>
+        </div>
+
+        <div class="card">
+            <h2>📤 Upload Document</h2>
             <div class="tabs">
                 <div class="tab active" onclick="switchTab('file')">📁 File Upload</div>
                 <div class="tab" onclick="switchTab('text')">📝 Text Input</div>
@@ -928,6 +1097,112 @@ Cross-references to existing ordinances (e.g., Cap. 344, Building Management Ord
 
             hideLoading();
             loadIndexStatus();
+        }
+
+        // Query functions
+        function setQuery(query) {
+            document.getElementById('search-query').value = query;
+            submitQuery();
+        }
+
+        async function submitQuery() {
+            const query = document.getElementById('search-query').value.trim();
+            if (!query) {
+                alert('Please enter a search query');
+                return;
+            }
+
+            const topK = document.getElementById('search-top-k').value;
+            const filterOrdinance = document.getElementById('search-ordinance').value;
+
+            // Show loading
+            document.getElementById('query-loading').classList.add('active');
+            document.getElementById('query-results').innerHTML = '';
+
+            try {
+                const response = await fetch('/api/query', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        query: query,
+                        top_k: parseInt(topK),
+                        filter_ordinance: filterOrdinance || null,
+                        expand_context: true
+                    })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    displayQueryResults(data);
+                } else {
+                    document.getElementById('query-results').innerHTML = `
+                        <div class="no-results">
+                            <p>❌ Error: ${data.detail || 'Unknown error'}</p>
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                document.getElementById('query-results').innerHTML = `
+                    <div class="no-results">
+                        <p>❌ Error: ${error.message}</p>
+                        <p style="margin-top: 10px; font-size: 0.9rem;">Make sure the server is running and the index is built.</p>
+                    </div>
+                `;
+            }
+
+            // Hide loading
+            document.getElementById('query-loading').classList.remove('active');
+        }
+
+        function displayQueryResults(data) {
+            const resultsDiv = document.getElementById('query-results');
+
+            if (!data.results || data.results.length === 0) {
+                resultsDiv.innerHTML = `
+                    <div class="no-results">
+                        <p>No results found for your query.</p>
+                        <p style="margin-top: 10px; font-size: 0.9rem;">Try different keywords or remove filters.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            let html = `<div class="results-summary">Found ${data.total} results for "<strong>${data.query}</strong>"</div>`;
+
+            data.results.forEach((result, index) => {
+                const scorePercent = (result.score * 100).toFixed(1);
+                const truncatedText = result.text.length > 500
+                    ? result.text.substring(0, 500) + '...'
+                    : result.text;
+
+                html += `
+                    <div class="query-result-item">
+                        <div class="query-result-header">
+                            <span class="query-result-title">${result.ordinance} ${result.section}</span>
+                            <span class="query-result-score">Score: ${scorePercent}%</span>
+                        </div>
+                        <div class="query-result-path">📍 ${result.hierarchy_path || 'N/A'}</div>
+                        <div class="query-result-text">${escapeHtml(truncatedText)}</div>
+                        ${result.cross_references && result.cross_references.length > 0 ? `
+                            <div class="query-result-refs">
+                                <div class="query-result-refs-title">Cross-references:</div>
+                                ${result.cross_references.slice(0, 5).map(ref =>
+                                    `<a href="#" onclick="setQuery('${escapeHtml(ref.text || ref.href)}'); return false;">${escapeHtml(ref.text || ref.href)}</a>`
+                                ).join('')}
+                            </div>
+                        ` : ''}
+                    </div>
+                `;
+            });
+
+            resultsDiv.innerHTML = html;
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
         }
 
         // Initialize

@@ -32,11 +32,39 @@ uvicorn src.api.main:app --host 0.0.0.0 --port 8000
 
 ### 1. Searching for Legal Information
 
-The web interface at http://localhost:8000 provides:
+The web interface at http://localhost:8000 provides a full-featured search interface:
 
-- **Document Upload** - Add new ordinances or regulatory statements
-- **Index Status** - View statistics about indexed documents
-- **Uploaded Documents** - Manage your uploaded files
+**Search Box:**
+1. Enter your question in the search box (e.g., "What are the duties of the management committee?")
+2. Press **Enter** or click **Search**
+3. Results appear below with relevance scores
+
+**Search Options:**
+- **Results** - Choose 5, 10, or 20 results
+- **Filter by Ordinance** - Limit search to a specific ordinance:
+  - Cap. 344 - Building Management
+  - Cap. 123 - Buildings Ordinance
+  - Cap. 572 - Fire Safety (Buildings)
+  - Cap. 95 - Fire Services
+  - Cap. 131 - Town Planning
+  - Cap. 7 - Landlord and Tenant
+  - Cap. 618 - Lifts and Escalators
+  - Cap. 563 - Urban Renewal Authority
+
+**Example Queries:**
+Click any example query button to instantly search:
+- "Management committee duties"
+- "Form IO corporation"
+- "Fire safety"
+- "AGM voting"
+
+**Understanding Results:**
+Each result shows:
+- **Ordinance & Section** - e.g., "Cap. 344 s.40C"
+- **Score** - Relevance percentage (higher = better match)
+- **Hierarchy Path** - Document structure location
+- **Text** - Excerpt from the provision
+- **Cross-references** - Links to related sections (clickable)
 
 ### 2. Uploading Documents
 
